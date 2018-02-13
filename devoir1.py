@@ -3269,16 +3269,27 @@ publications = [
 #4 reactions
 #5 commentaires 
 
+#Pour faire ce code, j'avais une idée générale qu'il fallait une boucle avec un else, et que la difficulté se trouvait dans le changement
+#du média à l'autre. J'ai eu recours à un ami qui s'y connaissait en programmation, mais pas particulièrement en Python. 
+#Nous avons eu droit à plusieurs messages d'erreurs et de recherche Google, comme les 'tuple' afin de venir à bout du code. 
 
+#On sait qu'il faut additionner, donc on défini nos valeurs au départ et on les met égales à 0 pour avoir un nombre juste à la fin
+
+#J'ai rajouté un compteur n puisque mon code n'affichait pas la dernière ligne, et quand n== len(publications), je lui demande de print cette dernière ligne
+#J'ai aussi décidé d'ajouter un autre compteur (c) pour calculer le nombre de publications par média 
 partages = 0
 reactions = 0 
 commentaires = 0 
 n = 0
 c = 0
 
+
+
 OldValue = publications [0][0]
 CurrentValue = ""
 
+#J'utilises OldValue et CurrentValue pour identifier le nom du média qui va changer plus le code avance. Ainsi, en comparant 
+#les deux posts ensemble, je demande au script d'additionner les éléments 3,4,5 des deux lignes si le nom du média ne change pas.
 
 
 for post in publications:
@@ -3294,6 +3305,9 @@ for post in publications:
 		total1 = (partages + reactions +commentaires)
 		c += 1
 		
+#Si le nom du média change, je demande au script d'imprimer tous les détails du média précedent, et la boucle recommence,
+#avec le nom du nouveau média et calcule les détails de ce nouveau média, jusqu'à la prochaine ligne où le média ne sera plus le même
+#et ainsi de suite. 
 
 	else:
 		print ("Les " + str(c) +  " publications du média " + OldValue + " ont été partagées " + str(partages) + " fois, ont provoqué " + str(reactions) + " réactions et ont généré " + str(commentaires) + " commentaires, pour un engagement total de " + str(total1) + " en 2017.")
@@ -3305,6 +3319,9 @@ for post in publications:
 
 	OldValue=CurrentValue
 
+#J,ai ajouté cette ligne parce que Vice Québec n'apparaissait pas. Cela est arrivé parce qu'il n'y a plus d'infos après celles
+#de Vice Québec. Il n'y a donc pas de CurrentValue qui n'est pas la même à OldValue, donc on ne passe pas au else, et donc au print
+#Ainsi, quand mon compteur atteint la longueur de la liste publications, elle m'imprime les détails du dernier média, donc Vice Québec
 	if n == len(publications):
 		
 		print ("Les " + str(c) + " publications du média " + OldValue + " ont été partagées " + str(partages) + " fois, ont provoqué " + str(reactions) + " réactions et ont généré " + str(commentaires) + " commentaires, pour un engagement total de " + str(total1) + " en 2017.")
